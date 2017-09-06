@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
         Zello.getInstance().configure("net.loudtalks", this);
 
         // Find all available widgets
+
+        final TextView statusText = (TextView) findViewById(R.id.status_text);
+
         Button pttButton = (Button) findViewById(R.id.ptt_button);
-
-
         pttButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -42,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
 
                 int action = event.getAction();
                 if (action == MotionEvent. ACTION_DOWN ) {
+                    statusText.setText("Transmitting...");
                     Zello.getInstance().beginMessage();
                 } else if (action == MotionEvent. ACTION_UP || action == MotionEvent. ACTION_CANCEL ) {
                     Zello.getInstance().endMessage();
+                    statusText.setText("Voice message sent.");
                 }
                 return false;
             }
         });
 
         Button selectButton = (Button) findViewById(R.id.select_button);
-
-
         selectButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
