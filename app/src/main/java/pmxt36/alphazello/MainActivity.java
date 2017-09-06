@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zello.sdk.Zello;
 import com.zello.sdk.Tab;
@@ -28,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Find all available widgets
 
-        final TextView statusText = (TextView) findViewById(R.id.status_text);
-
         Button pttButton = (Button) findViewById(R.id.ptt_button);
         pttButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -43,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
                 int action = event.getAction();
                 if (action == MotionEvent. ACTION_DOWN ) {
-                    statusText.setText("Transmitting...");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Transmitting...", Toast.LENGTH_SHORT);
+                    toast.show();
                     Zello.getInstance().beginMessage();
                 } else if (action == MotionEvent. ACTION_UP || action == MotionEvent. ACTION_CANCEL ) {
                     Zello.getInstance().endMessage();
-                    statusText.setText("Voice message sent.");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Voice message sent.", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
                 return false;
             }
