@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Init Zello
         Zello.getInstance().configure("net.loudtalks", this);
-
+        Zello.getInstance().setSelectedChannelOrGroup("Everyone");
         // Find all available widgets
 
         Button pttButton = (Button) findViewById(R.id.ptt_button);
@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 // Initiate call using the account signed in on Zello Work app
                 // Todo: set contact programatically using result from image processing on first responder
                 // Sample : set target contact to shuyang's iphone
-
-                // Zello.getInstance().setSelectedUserOrGateway("yang");
-
                 int action = event.getAction();
                 if (action == MotionEvent. ACTION_DOWN ) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Transmitting...", Toast.LENGTH_SHORT);
