@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
                 // Initiate call using the account signed in on Zello Work app
                 // Todo: set contact programatically using result from image processing on first responder
                 // Sample : set target contact to shuyang's iphone
-                Zello.getInstance().setSelectedUserOrGateway("yang");
+                // Zello.getInstance().setSelectedUserOrGateway("yang");
+
+                // Sample : broadcast to everyone
+                // Zello.getInstance().setSelectedChannelOrGroup("Everyone");
 
                 int action = event.getAction();
                 if (action == MotionEvent. ACTION_DOWN ) {
