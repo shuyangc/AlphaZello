@@ -1,21 +1,29 @@
 package pmxt36.alphazello;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zello.sdk.Zello;
 import com.zello.sdk.Tab;
 import com.zello.sdk.Theme;
+import com.zello.sdk.Zello;
 
 /*
 NOTE: You need to have zello work app (not the one from appstore) installed using this link
  http://mugun88.zellowork.com/app
  */
+
+/*
+* Required API
+*
+* int Init(void)
+* void StartPtt(string userNameToCall)
+* void StopPtt(void)
+* 
+* */
 
 public class MainActivity extends AppCompatActivity {
 
