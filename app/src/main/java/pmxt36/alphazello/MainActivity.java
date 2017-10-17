@@ -22,10 +22,12 @@ NOTE: You need to have zello work app (not the one from appstore) installed usin
 * int Init(void)
 * void StartPtt(string userNameToCall)
 * void StopPtt(void)
-* 
+*
 * */
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean isConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,31 @@ public class MainActivity extends AppCompatActivity {
                 Zello.getInstance().selectContact("Select a contact", new Tab[]{Tab.RECENTS,
                         Tab.USERS, Tab.CHANNELS}, Tab.RECENTS, Theme.DARK);
                 return false;
+            }
+        });
+
+        // Connect channel
+        final String channelName = "ONEMERIDIAN";
+        final Button connectButton = (Button) findViewById(R.id.connect);
+        connectButton.setText(String.format("Connect to %s", channelName));
+
+        connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isConnected){
+                    Zello.getInstance().disconnectChannel(channelName);
+                }else {
+                    Zello.getInstance().connectChannel(channelName);
+                    Zello.getInstance().setSelectedChannelOrGroup(channelName);
+                }
+
+                isConnected = !isConnected;
+
+                if (isConnected){
+                    connectButton.setText(String.format("Disconnect from %s", channelName));
+                }else {
+                    connectButton.setText(String.format("Connect to %s", channelName));
+                }
             }
         });
     }
